@@ -105,4 +105,147 @@
 
 #4-masala
 
+##5-masala
+# class Shaxs:
+#     def init(self, ism):
+#         self.ism = ism
+#
+# class Talaba(Shaxs):
+#     def init(self, ism, id_raqam):
+#         super().init(ism)
+#         self.id_raqam = id_raqam
+#
+# class ImitihonNatijasi(Talaba):
+#     def init(self, ism, id_raqam, baholar):
+#         super().init(ism, id_raqam)
+#         self.baholar = baholar
+#
+#     def ortalama(self):
+#         if not self.baholar:
+#             return 0
+#         return sum(self.baholar) / len(self.baholar)
+#
+#     def status(self):
+#         a = self.ortalama()
+#         if a >= 86:
+#             return "A'lo"
+#         elif 71 <= a <= 85:
+#             return "Yaxshi"
+#         elif 56 <= a <= 70:
+#             return "Qoniqarli"
+#         else:
+#             return "Qoniqarsiz"
+#
+# natija = ImitihonNatijasi("Ali","T001", [90, 80, 100])
+# print(f"Ism: {natija.ism}")
+# print(f"ID Raqam: {natija.id_raqam}")
+# print(f"O'rtacha: {natija.ortalama()}")
+# print(f"Status: {natija.status()}")
 
+
+#6-masala
+# class Hisob:
+#     def __init__(self, raqam: str, egasi: str, balans: float = 0, **kwargs):
+#         """
+#         Asosiy hisob klassi.
+#         Qo'shimcha **kwargs ni qabul qiladi va super orqali davom ettiradi,
+#         shuning uchun mixinlar bilan kooperativ initsializatsiya mumkin.
+#         """
+#         self.raqam = raqam
+#         self.egasi = egasi
+#         self.balans = balans
+#         # davom ettirish uchun super chaqiriq (mixins keyingi __init__larni oladi)
+#         super().__init__(**kwargs)
+#
+#     def kirim(self, summa: float) -> float:
+#         if summa < 0:
+#             raise ValueError("Kiritilayotgan summa manfiy bo'lishi mumkin emas.")
+#         self.balans += summa
+#         return self.balans
+#
+#     def chiqim(self, summa: float):
+#         if summa < 0:
+#             raise ValueError("Chiqim summasi manfiy bo'lishi mumkin emas.")
+#         if summa > self.balans:
+#             return "Xatolik: balans yetarli emas."
+#         self.balans -= summa
+#         return self.balans
+#
+# class JamgArmaMixin:
+#     def __init__(self, foiz_stavka: float = 0, **kwargs):
+#         self.foiz_stavka = foiz_stavka
+#         super().__init__(**kwargs)
+#
+#     def foiz_qosh(self) -> float:
+#         if not hasattr(self, "balans"):
+#             raise AttributeError("Obyektda 'balans' atributi yo'q.")
+#         self.balans += self.balans * (self.foiz_stavka / 100)
+#         return self.balans
+#
+# class KreditMixin:
+#     def __init__(self, limit: float = 0, **kwargs):
+#
+#         self.limit = limit
+#         super().__init__(**kwargs)
+#
+#     def chiqim(self, summa: float):
+#
+#         if summa < 0:
+#             raise ValueError("Chiqim summasi manfiy bo'lishi mumkin emas.")
+#         maksimal = getattr(self, "balans", 0) + self.limit
+#         if summa > maksimal:
+#             return "Xatolik: balans va limit doirasi yetarli emas."
+#         # ruxsat berildi — balansni kamaytiramiz
+#         self.balans -= summa
+#         return self.balans
+#
+#
+# class VIPHisob(Hisob, JamgArmaMixin, KreditMixin):
+#     def __init__(self, raqam: str, egasi: str, balans: float = 0, *, foiz_stavka: float = 0, limit: float = 0):
+#         super().__init__(raqam=raqam, egasi=egasi, balans=balans, foiz_stavka=foiz_stavka, limit=limit)
+#
+#     def chiqim(self, summa: float):
+#
+#         return KreditMixin.chiqim(self, summa)
+
+
+#7-masala
+# class Kurs:
+#     def init(self, nom, davomiylik_hafta, narx):
+#         self.nom = nom
+#         self.davomiylik_hafta = davomiylik_hafta
+#         self.narx = narx
+#
+#     def malumot(self):
+#         return f"Kurs: {self.nom}, Davomiylik: {self.davomiylik_hafta} hafta, Narx: {self.narx}"
+#
+# class OnlaynKurs(Kurs):
+#     def init(self, nom, davomiylik_hafta, narx, platforma):
+#         super().init(nom, davomiylik_hafta, narx)
+#         self.platforma = platforma
+#
+#     def malumot(self):
+#         m = super().malumot()
+#         return f"{m}, Platforma: {self.platforma}"
+#
+#
+# class OfflineKurs(Kurs):
+#     def init(self, nom, davomiylik_hafta, narx, manzil):
+#         super().init(nom, davomiylik_hafta, narx)
+#         self.manzil = manzil
+#
+#     def malumot(self):
+#         x = super().malumot()
+#         return f"{x}, Manzil: {self.manzil}"
+#
+#
+# kurslar = [
+#     OnlaynKurs("Python", 8, 1200000, "Udemy"),
+#     OfflineKurs("Web Dasturlash", 12, 2000000, "Toshkent, Chilonzor"),
+#     OnlaynKurs("Data Science", 10, 1500000, "Coursera")
+# ]
+#
+# for kurs in kurslar:
+#     print(kurs.malumot())
+
+#8-masala
