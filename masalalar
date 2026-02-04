@@ -104,6 +104,34 @@
 #     print(s.malumot())
 
 #4-masala
+# class Mahsulot:
+#     def __init__(self, nom: str, narx: float):
+#         self.nom = nom
+#         self.narx = narx
+#
+#     def chegirmali_narx(self, foiz: float) -> float:
+#         if foiz < 0:
+#             raise ValueError("Chegirma foizi manfiy bo'lishi mumkin emas.")
+#         self.narx = self.narx * (1 - foiz / 100)
+#         return self.narx
+#
+#
+# class Elektronika(Mahsulot):
+#     def __init__(self, nom: str, narx: float, kafolat_oy: int):
+#         super().__init__(nom, narx)
+#         self.kafolat_oy = kafolat_oy
+#
+#     def malumot(self) -> str:
+#         return f"Nom: {self.nom}, Narx: {self.narx}, Kafolat: {self.kafolat_oy} oy"
+#
+#
+# class OziqOvqat(Mahsulot):
+#     def __init__(self, nom: str, narx: float, yaroqlilik_kuni: str):
+#         super().__init__(nom, narx)
+#         self.yaroqlilik_kuni = yaroqlilik_kuni
+#
+#     def malumot(self) -> str:
+#         return f"Nom: {self.nom}, Narx: {self.narx}, Yaroqlilik: {self.yaroqlilik_kuni}"
 
 ##5-masala
 # class Shaxs:
@@ -211,7 +239,7 @@
 
 #7-masala
 # class Kurs:
-#     def init(self, nom, davomiylik_hafta, narx):
+#     def __init__(self, nom, davomiylik_hafta, narx):
 #         self.nom = nom
 #         self.davomiylik_hafta = davomiylik_hafta
 #         self.narx = narx
@@ -220,7 +248,7 @@
 #         return f"Kurs: {self.nom}, Davomiylik: {self.davomiylik_hafta} hafta, Narx: {self.narx}"
 #
 # class OnlaynKurs(Kurs):
-#     def init(self, nom, davomiylik_hafta, narx, platforma):
+#     def __init__(self, nom, davomiylik_hafta, narx, platforma):
 #         super().init(nom, davomiylik_hafta, narx)
 #         self.platforma = platforma
 #
@@ -230,7 +258,7 @@
 #
 #
 # class OfflineKurs(Kurs):
-#     def init(self, nom, davomiylik_hafta, narx, manzil):
+#     def __init__(self, nom, davomiylik_hafta, narx, manzil):
 #         super().init(nom, davomiylik_hafta, narx)
 #         self.manzil = manzil
 #
@@ -249,3 +277,117 @@
 #     print(kurs.malumot())
 
 #8-masala
+
+# class Taom:
+#     def __init__(self, nom, narx):
+#         self.nom = nom
+#         self.narx = narx
+#
+#     def tavsif(self):
+#         return f"Taom: {self.nom}, Narx: {self.narx}"
+#
+#
+# class IssiqTaom(Taom):
+#     def __init__(self, nom, narx, kaloriya):
+#         super().__init__(nom, narx)
+#         self.kaloriya = kaloriya
+#
+#     def tavsif(self):
+#         return f"{super().tavsif()}, Kaloriya: {self.kaloriya} kkal"
+#
+#
+# class Ichimlik(Taom):
+#     def __init__(self, nom, narx, hajm_ml):
+#         super().__init__(nom, narx)
+#         self.hajm_ml = hajm_ml
+#
+#     def tavsif(self):
+#         return f"{super().tavsif()}, Hajm: {self.hajm_ml} ml"
+#
+#
+# def chegirma_qollash(taomlar, foiz):
+#     for taom in taomlar:
+#         taom.narx -= taom.narx * foiz / 100
+#
+# #9-masala
+# from abc import ABC, abstractmethod
+# from typing import List
+# class  JamoaAzo(ABC):
+#     def __init__(self, ism):
+#         self.ism = ism
+#
+#     @abstractmethod
+#     def vazifa(self):
+#         return NotImplementedError
+#
+# class BackendDasturchi(JamoaAzo):
+#     def vazifa(self):
+#         return "API va ma'lumotlar bazasi"
+#
+# class FrontendDasturchi(JamoaAzo):
+#     def vazifa(self):
+#         return "UI va foydalanuvchi interfeysi"
+#
+# class Tester(JamoaAzo):
+#     def vazifa(self):
+#         return "Tizimni test qiladi"
+#
+# def hisobot(azolar:List[JamoaAzo]):
+#     for azo in azolar:
+#         print(f"Ism: {azo.ism},Vazifa: {azo.vazifa()}")
+#
+# jamoa = [
+#     BackendDasturchi("Xusniddin"),
+#     FrontendDasturchi("Olimboy"),
+#     Tester("Quramboy")
+# ]
+# hisobot(jamoa)
+# print(hisobot(jamoa))
+#
+#
+# #10-masala
+# class QadamSanagich:
+#     def __init__(self, kunlik_maqsad, qadamlar):
+#         self.kunlik_maqsad = kunlik_maqsad
+#         self.qadamlar = qadamlar
+#
+#     def bajarilgan_kunlar(self):
+#         return sum(1 for q in self.qadamlar if q >= self.kunlik_maqsad)
+#
+#     def ortalama_qadam(self):
+#         return sum(self.qadamlar) / len(self.qadamlar)
+#
+#
+# class MotivatsionQadamSanagich(QadamSanagich):
+#     def motivatsiya_xabari(self):
+#         if self.bajarilgan_kunlar() >= 5:
+#             return "Barakalla! Siz juda faol ekansiz!"
+#         else:
+#             return "Harakatni ko'proq oshiring!"
+#
+#
+# hafta = [10000, 7500, 8200, 9000, 5000, 12000, 8000]
+# q = MotivatsionQadamSanagich(8000, hafta)
+#
+# print(q.bajarilgan_kunlar())   # 5
+# print(q.ortalama_qadam())      # o'rtacha qiymat
+# print(q.motivatsiya_xabari())  # motivatsiya xabari
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
